@@ -24,7 +24,7 @@ global.parseFloat = parseFloat
 let mongoServer
 
 beforeAll(async () => {
-  mongoServer = new MongodbMemoryServer()
+  mongoServer = new MongodbMemoryServer({ debug: true })
   const mongoUri = await mongoServer.getConnectionString()
   await mongoose.connect(mongoUri, (err) => {
     if (err) console.error(err)
