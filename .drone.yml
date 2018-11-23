@@ -4,3 +4,4 @@ pipeline:
     commands:
       - yarn
       - yarn test
+    secrets: [ master_key, jwt_secret]
