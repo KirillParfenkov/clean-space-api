@@ -1,0 +1,6 @@
+pipeline:
+  test:
+    image: node:10.11.0-alpine
+    commands:
+      - yarn
+      - yarn test
