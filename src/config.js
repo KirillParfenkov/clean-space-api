@@ -36,10 +36,18 @@ const config = {
       }
     }
   },
-  test: { },
+  test: {
+    mongo: {
+      uri: 'mongodb://localhost/clean-space-api-dev-test',
+      options: {
+        debug: true
+      }
+    }
+  },
   development: {
     mongo: {
       uri: 'mongodb://localhost/clean-space-api-dev',
+      testUri: 'mongodb://localhost/clean-space-api-test',
       options: {
         debug: true
       }
