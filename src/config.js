@@ -40,7 +40,8 @@ const config = {
     mongo: {
       uri: 'mongodb://localhost/clean-space-api-dev-test',
       options: {
-        debug: true
+        debug: true,
+        useNewUrlParser: true
       }
     }
   },
@@ -49,7 +50,8 @@ const config = {
       uri: 'mongodb://localhost/clean-space-api-dev',
       testUri: 'mongodb://localhost/clean-space-api-test',
       options: {
-        debug: true
+        debug: true,
+        useNewUrlParser: true
       }
     }
   },
