@@ -1,8 +1,13 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "standard"
+    "airbnb-base"
   ],
+  "settings": {
+    "import/ignore": [
+      "config"
+    ]
+  },
   "env": {
     "jest": true,
     "jasmine": true

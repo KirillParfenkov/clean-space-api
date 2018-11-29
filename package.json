@@ -26,6 +26,7 @@
     "cross-env": "^5.0.5",
     "dotenv-safe": "^4.0.3",
     "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-node": "^6.0.1",
