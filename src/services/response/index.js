@@ -13,6 +13,8 @@ export const notFound = res => (entity) => {
   return null;
 };
 
+export const conflict = res => err => res.status(409).json(err);
+
 export const authorOrAdmin = (res, user, userField) => (entity) => {
   if (entity) {
     const isAdmin = user.role === 'admin';

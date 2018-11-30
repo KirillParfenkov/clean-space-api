@@ -1,4 +1,4 @@
-import { success, notFound } from '../../services/response';
+import { success, notFound, conflict } from '../../services/response';
 import { create as createUser } from '../../services/user-service';
 import { User } from '.';
 
@@ -17,7 +17,7 @@ export const showMe = ({ user }, res) => res.json(user.view(true));
 
 export const create = ({ bodymen: { body } }, res, next) => createUser(body)
   .then(success(res, 201))
-  .catch(err => next(err));
+  .catch(conflict);
 
 export const update = ({ bodymen: { body }, params, user }, res, next) => User.findById(params.id === 'me' ? user.id : params.id)
   .then(notFound(res))
