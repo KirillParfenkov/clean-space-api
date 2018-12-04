@@ -19,9 +19,9 @@ export const create = async (user) => {
     const createdUser = await User.create(user);
     return view(createdUser, true);
   } catch (e) {
-    let error = UserServiceError('failed to create user');
+    let error = new UserServiceError('failed to create user');
     if (e.name === 'MongoError' && e.code === 11000) {
-      error = UserServiceEmailRegisteredError('email already registered');
+      error = new UserServiceEmailRegisteredError('email already registered');
     }
     return Promise.reject(error);
   }
