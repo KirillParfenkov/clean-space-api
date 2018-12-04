@@ -17,7 +17,7 @@ export const showMe = ({ user }, res) => res.json(user.view(true));
 
 export const create = ({ bodymen: { body } }, res, next) => createUser(body)
   .then(success(res, 201))
-  .catch(conflict);
+  .catch(conflict(res));
 
 export const update = ({ bodymen: { body }, params, user }, res, next) => User.findById(params.id === 'me' ? user.id : params.id)
   .then(notFound(res))
