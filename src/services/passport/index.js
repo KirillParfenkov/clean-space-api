@@ -31,11 +31,6 @@ export const token = ({ required, roles = User.roles } = {}) => (req, res, next)
 })(req, res, next);
 
 passport.use('password', new BasicStrategy((email, password, done) => {
-  const userSchema = new Schema({ email: schema.tree.email, password: schema.tree.password });
-
-  userSchema.validate({ email, password }, (err) => {
-    if (err) done(err);
-  });
 
   User.findOne({ email }).then((user) => {
     if (!user) {

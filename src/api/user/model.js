@@ -1,10 +1,9 @@
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
 import mongoose, { Schema } from 'mongoose';
-import mongooseKeywords from 'mongoose-keywords';
 import { env } from '../../config';
 
-const roles = ['client', 'service', 'admin'];
+export const roles = ['client', 'service', 'admin'];
 
 const userSchema = new Schema({
   email: {
@@ -98,8 +97,6 @@ export const view = (user, full) => {
 userSchema.statics = {
   roles,
 };
-
-userSchema.plugin(mongooseKeywords, { paths: ['email', 'name'] });
 
 const model = mongoose.model('User', userSchema);
 
