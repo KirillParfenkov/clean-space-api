@@ -33,7 +33,7 @@ export const create = async ({ password, ...otherUserProps }) => {
   }
 };
 
-export const createAuthToken = userId => async (token) => {
+export const attachAuthToken = userId => async (token) => {
   const user = await User.findById(userId);
   user.tokens.push({
     token,
