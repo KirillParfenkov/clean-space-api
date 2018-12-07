@@ -1,10 +1,11 @@
 import passport from 'passport';
-import { Schema } from 'bodymen';
 import { BasicStrategy } from 'passport-http';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+
 import { jwtSecret, masterKey } from '../../config';
-import User, { schema } from '../../api/user/model';
+import User from '../../api/user/model';
+import { getUserByCredentials } from '../user-service';
 
 export const password = () => (req, res, next) => passport.authenticate('password', { session: false }, (err, user, info) => {
   if (err && err.param) {
@@ -30,18 +31,13 @@ export const token = ({ required, roles = User.roles } = {}) => (req, res, next)
   });
 })(req, res, next);
 
-passport.use('password', new BasicStrategy((email, password, done) => {
-
-  User.findOne({ email }).then((user) => {
-    if (!user) {
-      done(true);
-      return null;
-    }
-    return user.authenticate(password, user.password).then((user) => {
-      done(null, user);
-      return null;
-    }).catch(done);
-  });
+passport.use('password', new BasicStrategy(async (email, pass, done) => {
+  try {
+    const user = await getUserByCredentials(email, pass);
+    done(null, user);
+  } catch (e) {
+    done(e);
+  }
 }));
 
 passport.use('master', new BearerStrategy((token, done) => {
